@@ -1,0 +1,303 @@
+<style type="text/css">
+    input, select {
+        width: 300px;
+        margin-top: 10px;
+    }
+    label, .emptySpace {
+        display: -webkit-inline-box; width: 150px;
+    }
+</style>
+<form role="form" id="abcForm" method="post">
+    <div class="form-group">
+        <label for="name">Name<span>*</span></label>
+        <input type="text"
+               maxlength="50"
+               class="form-control"
+               onfocus="clearField(this.id, 'nameErrors')"
+               onblur="validateInput(true, this.value, this.name, 'Name', 'nameErrors', /^[a-zA-Z ]+$/, 50)"
+               id="name"
+               required="required"
+               name="name"
+               placeholder="Jehangir Wahid" />
+        <span class="errorSpan nameErrors"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Designation<span>*</span></label>
+        <input type="text"
+               maxlength="100"
+               class="form-control"
+               onfocus="clearField(this.id, 'designationErrors')"
+               onblur="validateInput(true, this.value, this.name, 'Designation', 'designationErrors', /^[a-zA-Z-0-9 ]+$/, 100)"
+               id="designation"
+               required="required"
+               name="designation"
+               placeholder="Software Engineer" />
+        <span class="errorSpan designationErrors"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Mobile Number<span>*</span></label>
+        <input type="text"
+               maxlength="11"
+               class="form-control"
+               onfocus="clearField(this.id, 'mobile_numberErrors')"
+               onblur="validateInput(true, this.value, this.name, 'Mobile Number', 'mobile_numberErrors', /(03)[0-9]{9}$/, 11)"
+               id="mobile_number"
+               required="required"
+               name="mobile_number"
+               placeholder="03000000000" />
+        <span class="errorSpan mobile_numberErrors"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Email Address</label>
+        <input type="text"
+               maxlength="80"
+               class="form-control"
+               onfocus="clearField(this.id, 'emailErrors')"
+               onblur="validateInput(false, this.value, this.name, 'Email Address', 'emailErrors', /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/, 80)"
+               id="email"
+               name="email"
+               placeholder="someone@example.com" />
+        <span class="errorSpan emailErrors"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Address<span>*</span></label>
+        <input type="text"
+               maxlength="150"
+               class="form-control"
+               onfocus="clearField(this.id, 'addressErrors')"
+               onblur="validateInput(true, this.value, this.name, 'Address', 'addressErrors', /[a-zA-Z0-9 \-,. \#\ \/]+$/, 150)"
+               id="address"
+               required="required"
+               name="address"
+               placeholder="Street# 0, ABC-23, XYZ." />
+        <span class="errorSpan addressErrors"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Identity Number<span>*</span></label>
+        <input type="text"
+               maxlength="15"
+               class="form-control"
+               onkeyup="formatIdentityNumber(this.value, this.id)" 
+               onfocus="clearField(this.id, 'identity_numberErrors')"
+               onblur="validateInput(true, this.value, this.name, 'Identity Number', 'identity_numberErrors', /[0-9]{5}(-)[0-9]{7}(-)[0-9]{1}$/, 15)"
+               id="identity_number"
+               required="required"
+               name="identity_number"
+               placeholder="00000-0000000-0" />
+        <span class="errorSpan identity_numberErrors"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">LinkedIn Profile</label>
+        <input type="text"
+               maxlength="200"
+               class="form-control"
+               onfocus="clearField(this.id, 'linkedin_profileErrors')"
+               onblur="validateInput(false, this.value, this.name, 'LinkedIn Profile', 'linkedin_profileErrors', /^https:\/\/[a-z]{2,3}\.linkedin\.com\/[^<>]+$/, 200)"
+               id="linkedin_profile"
+               name="linkedin_profile"
+               placeholder="https://www.linkedin.com/in/jehangir-wahid/" />
+        <span class="errorSpan linkedin_profileErrors"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Date<span>*</span></label>
+        <input type="date"
+               maxlength="50"
+               class="form-control"
+               onfocus="clearField(this.id, 'dateErrors')"
+               onblur="validateInput(true, this.value, this.name, 'Date', 'dateErrors', /^[a-zA-Z0-9 \-,. \# \?\@\(\) \/ ]+$/, 50)"
+               id="date"
+               required="required"
+               name="date" />
+        <span class="errorSpan dateErrors"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Registration Number<span>*</span></label>
+        <input type="text"
+               maxlength="10"
+               class="form-control"
+               onfocus="clearField(this.id, 'registration_numberErrors')"
+               onblur="validateInput(true, this.value, this.name, 'Registration Number', 'registration_numberErrors', /^[0-9]+$/, 10)"
+               id="registration_number"
+               required="required"
+               name="registration_number"
+               placeholder="0000" />
+        <span class="errorSpan registration_numberErrors"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">Website URL</label>
+        <input type="text"
+               maxlength="200"
+               class="form-control"
+               onfocus="clearField(this.id, 'website_urlErrors')"
+               onblur="validateInput(false
+                                    ,this.value
+                                    ,this.name
+                                    ,'Website URL'
+                                    ,'website_urlErrors'
+                                    ,/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[-a-z0-9+&@#\/%?=~_|!.]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/[^<>]*)?$/
+                                    ,200)"
+               id="website_url"
+               name="website_url"
+               placeholder="https://www.google.com" />
+        <span class="errorSpan website_urlErrors"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">ABC Option<span>*</span></label>
+        <select class="form-control"
+                onfocus="clearField(this.id, 'abc_optionErrors')"
+                onblur="validateInput(true, this.value, this.name, 'ABC Option', 'abc_optionErrors', /^[1-4]+$/, 1)"
+                id="abc_option"
+                required="required"
+                name="abc_option">
+            <option value="" selected>Select ABC Option</option>
+            <option value="1">Option A</option>
+            <option value="2">Option B</option>
+            <option value="3">Option C</option>
+            <option value="4">Option D</option>
+        </select>
+        <span class="errorSpan abc_optionErrors"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">XYZ Option</label>
+        <select class="form-control"
+                onfocus="clearField(this.id, 'xyz_optionErrors')"
+                onblur="validateInput(false, this.value, this.name, 'XYZ Option', 'xyz_optionErrors', /^[1-8]+$/, 1)"
+                id="xyz_option"
+                name="xyz_option">
+            <option value="" selected>Select XYZ Option</option>
+            <option value="1">Option A</option>
+            <option value="2">Option B</option>
+            <option value="3">Option C</option>
+            <option value="4">Option D</option>
+            <option value="5">Option E</option>
+            <option value="6">Option F</option>
+            <option value="7">Option G</option>
+            <option value="8">Option H</option>
+        </select>
+        <span class="errorSpan xyz_optionErrors"></span>
+    </div>
+    <div class="form-group">
+        <label for="name">ABCD Options<span>*</span></label>
+        <select multiple 
+                class="form-control"
+                onfocus="clearField(this.id, 'abcd_optionsErrors')"
+                onblur="validateInput(true, this.value, this.name, 'ABCD Options', 'abcd_optionsErrors', /^[1-5]+$/, 1)"
+                id="abcd_options"
+                required="required"
+                name="abcd_options">
+            <option value="" selected>Select ABCD Options</option>
+            <option value="1">Option A</option>
+            <option value="2">Option B</option>
+            <option value="3">Option C</option>
+            <option value="4">Option D</option>
+            <option value="5">Option E</option>
+        </select>
+        <span class="errorSpan abcd_optionsErrors"></span>
+    </div>
+    <div class="buttons">
+        <div class="order_button">
+        <span class="emptySpace">&nbsp;</span>
+            <input  type="button"
+                    value="Submit"
+                    id="submit"
+                    onclick="return submitForm();"
+                    name="submit"
+                    class="btn btn-primary pull-right" />
+        </div>
+    </div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    var processedFields     = [];
+    var requiredFields      = [];
+    var requiredFieldsCount = 0;
+    var isValid             = 0;
+
+    function submitForm()
+    {
+        if (requiredFieldsCount == document.getElementById("abcForm").querySelectorAll("[required]").length) {
+            for (field in processedFields) {
+                if (processedFields[field] == 0) {
+                    alert("Please Fill in the form with valid values.");
+                    return;
+                }
+            }
+            alert('Form Validated!');
+        } else {
+            alert("Please Fill in the form with valid values.");
+        }
+    }
+
+    function validateInput(isRequired
+                          ,inputValue
+                          ,inputName
+                          ,friendlyName
+                          ,errorSpanClass
+                          ,inputRegex
+                          ,inputLength)
+    {
+        if(isRequired) {
+            if(requiredFields.indexOf(inputName) < 0) {
+                requiredFields.push(inputName);
+                requiredFieldsCount++;
+            }
+            
+            if(!inputValue.length > 0) {
+                document.getElementsByClassName(errorSpanClass)[0].innerHTML = friendlyName + " value cannot be empty.";
+                isValid = 0;
+                processedFields[inputName] = isValid;
+            }
+        }
+        if (inputValue.length > 0) {
+            isValid = validateInputType(inputRegex, friendlyName, inputValue, errorSpanClass);
+            isValid = validateInputLength(inputLength, friendlyName, inputValue, errorSpanClass, isValid);
+            processedFields[inputName] = isValid;
+        } else {
+            if (processedFields.indexOf(inputName) < 0 && !isRequired) {
+                delete processedFields[inputName];
+            }
+        }
+    }
+    
+    function validateInputType(inputRegex
+                              ,friendlyName
+                              ,inputValue
+                              ,errorSpanClass)
+    {
+        if(!inputValue.match(inputRegex)) {
+            document.getElementsByClassName(errorSpanClass)[0].innerHTML = "Please enter valid value for "+ friendlyName+ ".";
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
+
+    function validateInputLength(inputLength
+                                ,friendlyName
+                                ,inputValue
+                                ,errorSpanClass
+                                ,isValid)
+    {
+        if (inputValue.length > inputLength) {
+            document.getElementsByClassName(errorSpanClass)[0].innerHTML = friendlyName+ " size limit is "+ inputLength+ " characters only.";
+            return 0;
+        } else {
+            return 1 * isValid;
+        }
+    }
+
+    function clearField(inputId
+                       ,errorSpanClass)
+    {
+        document.getElementById(inputId).value = "";
+        document.getElementsByClassName(errorSpanClass)[0].innerHTML = "";
+    }
+
+    function formatIdentityNumber(inputValue, inputId)
+    {
+        if (inputValue.length == 5 || inputValue.length == 13) {
+            document.getElementById(inputId).value += "-";
+        }
+    }
+</script>
